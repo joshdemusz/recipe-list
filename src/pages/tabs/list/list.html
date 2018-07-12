@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-item  >  -->
+    <ion-list *ngFor="let recipe of recipeProvider.recipes">
+      <ion-list-header>
+        {{recipe.name}}
+        <ion-icon name="trash" item-end></ion-icon>
+      </ion-list-header>
+      <ion-item *ngFor="let ingredient of recipe.ingredients" (dblclick)="recipeProvider.completeItem(recipe, ingredient)">
+        {{ingredient.name}}
+        <p>
+          {{ingredient.quantity}}
+          {{ingredient.units}}
+        </p>
+        <p>
+          {{ingredient.description}}
+        </p>
+      </ion-item>
+      <ion-item>
+          <ion-icon name="add" item-start></ion-icon>
+      </ion-item>
+    </ion-list>
+      <ion-list>
+          <ion-list-header>
+            Other
+            <ion-icon name="add" item-end></ion-icon>
+          </ion-list-header>
+          <!-- <ion-item>
+            
+          </ion-item> -->
+        </ion-list>
+  <ion-list>
+      <ion-list-header>
+        Completed
+      </ion-list-header>
+      <!-- <ion-item>
+        
+      </ion-item> -->
+    </ion-list>
+</ion-content>
