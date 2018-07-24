@@ -17,9 +17,22 @@
 
 <ion-content padding>
   <ion-list>
-    <button *ngFor="let recipe of recipes" ion-item icon-start (click)="addRecipeToList(recipe)">
+    <ion-item *ngFor="let recipe of recipes">
+    <!-- <button *ngFor="let recipe of recipes" ion-item icon-start (click)="addRecipeToList(recipe)" >
         {{ recipe.name }}
         <p>{{ recipe.description }}</p>
-    </button>
+    </button> -->
+      <button ion-button clear item-start (click)="addRecipeToList(recipe)">
+          <ion-icon icon-end name="trash"></ion-icon>
+      </button>
+      <!-- <ion-thumbnail item-start>
+          <ion-icon icon-end name="trash"></ion-icon>
+      </ion-thumbnail> -->
+      <h2>{{ recipe.name }}</h2>
+      <p>{{ recipe.description }}</p>
+      <button ion-button clear item-end (click)="deleteRecipe(recipe)">
+          <ion-icon icon-end name="trash"></ion-icon>
+      </button>
+    </ion-item>
   </ion-list>
 </ion-content>

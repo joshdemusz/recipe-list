@@ -8,7 +8,7 @@
   <ion-navbar>
     <ion-buttons end>
       <button ion-button icon-only>
-        <ion-icon name="add"></ion-icon>
+        <!-- <ion-icon name="add"></ion-icon> -->
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,7 +16,7 @@
 
 <ion-content padding>
   <!-- <ion-item  >  -->
-    <ion-list *ngFor="let recipe of recipeProvider.recipes">
+    <ion-list *ngFor="let recipe of listProvider.recipes">
       <ion-list-header>
         {{recipe.name}}
         <ion-icon name="trash" item-end></ion-icon>
@@ -31,14 +31,19 @@
           {{ingredient.description}}
         </p>
       </ion-item>
-      <ion-item>
-          <ion-icon name="add" item-start></ion-icon>
-      </ion-item>
+      <!-- <ion-item>
+          <button ion-button icon-only (click)="openIngredientForm()">
+          </button>
+          <ion-icon name="add" item-start (click)="openIngredientForm()"></ion-icon> -->
+      <!-- </ion-item> -->
     </ion-list>
       <ion-list>
           <ion-list-header>
             Other
-            <ion-icon name="add" item-end></ion-icon>
+            <button ion-button icon-only (click)="openIngredientForm()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+
           </ion-list-header>
           <!-- <ion-item>
             

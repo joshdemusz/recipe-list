@@ -11,8 +11,10 @@ import { ListPage } from '../pages/tabs/list/list';
 import { RecipesPage } from '../pages/tabs/recipes/recipes';
 import { RecipeFormPage } from '../pages/tabs/recipes/recipe-form/recipe-form';
 import { IngredientFormPage } from '../pages/tabs/recipes/recipe-form/ingredient-form/ingredient-form';
-import { RecipeProvider } from '../providers/recipe/recipe';
+import { ListProvider } from '../providers/list/list';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { DaoProvider } from '../providers/dao/dao';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RecipeProvider,
+    DaoProvider,
+    ListProvider,
     HttpClientModule
   ]
 })

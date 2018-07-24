@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { RecipeProvider } from '../../../providers/recipe/recipe';
-import { Ingredient } from '../../../models/ingredient-model';
-import { Recipe } from '../../../models/recipe-model';
+import { IngredientFormPage } from '../recipes/recipe-form/ingredient-form/ingredient-form';
+import { ListProvider } from '../../../providers/list/list';
 
 /**
  * Generated class for the ListPage page.
@@ -17,7 +16,7 @@ import { Recipe } from '../../../models/recipe-model';
 })
 export class ListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private recipeProvider: RecipeProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public listProvider: ListProvider) {
   }
 
   ionViewDidLoad() {
@@ -36,5 +35,10 @@ export class ListPage {
 
   //   console.log(this.recipes);
   // }
+
+  openIngredientForm() {
+    console.log('open ing form');
+    this.navCtrl.push(IngredientFormPage);
+  }
 
 }

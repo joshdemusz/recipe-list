@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Recipe } from '../../../../models/recipe-model';
 import { IngredientFormPage } from './ingredient-form/ingredient-form';
-import { Ingredient } from '../../../../models/ingredient-model';
 
 /**
  * Generated class for the RecipeFormPage page.

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RecipeFormPage } from './recipe-form/recipe-form';
 import { Recipe } from '../../../models/recipe-model';
-import { RecipeProvider } from '../../../providers/recipe/recipe';
+import { ListProvider } from '../../../providers/list/list';
+import { DaoProvider } from '../../../providers/dao/dao';
 
 /**
  * Generated class for the RecipesPage page.
@@ -19,8 +20,11 @@ export class RecipesPage {
 
   recipes: Recipe[];
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private recipeProvider: RecipeProvider) {
-    this.recipes = []
+  constructor(public navCtrl: NavController, public navParams: NavParams, private listProvider: ListProvider, private dao: DaoProvider) {
+    this.dao.getRecipes().then(res => {
+      this.recipes = res;
+      console.log(this.recipes);
+    })
   }
 
   ionViewDidLoad() {
@@ -32,13 +36,16 @@ export class RecipesPage {
   }
 
   addRecipeToList(recipe) {
-    console.log(recipe);
-    //this.navCtrl.getPrevious().data.recipe = recipe;
+    this.listProvider.addRecipeToList(recipe);
+  }
 
-    this.recipeProvider.addRecipeToList(recipe);
-
+  deleteRecipe(recipe) {
+    console.log('in');
     
-    // this.navCtrl.pop();
+    const recipeIndex = this.recipes.indexOf(recipe);
+    console.log(recipeIndex);
+    this.recipes.splice(recipeIndex, 1);
+    this.dao.updateRecipes(this.recipes);
   }
 
   public ionViewWillEnter() {
@@ -47,6 +54,7 @@ export class RecipesPage {
       return;
     }
     this.recipes.push(this.navParams.get('recipe'));
+    this.dao.updateRecipes(this.recipes);
 
     this.navParams.data.recipe = null;
   }
